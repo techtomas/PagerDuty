@@ -1,0 +1,17 @@
+/* Config.js
+ * 
+ * Rename config.js.example to config.js
+*/
+
+var config = {};
+
+config.pagerduty = {};
+config.mongodb = {};
+
+config.pagerduty.url = 'pagerduty.com';
+config.pagerduty.token = 'xxxxxxx';
+
+config.mongodb.host = 'localhost';
+config.mongodb.db = 'pagerduty';
+
+module.exports = config;

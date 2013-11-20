@@ -1,0 +1,13 @@
+{
+  "name": "pagerduty-archive",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "load" : "node data-load.js"
+  },
+  "dependencies": {
+    "mongodb" : ">=0.9.6-7",
+    "mongoose" : "3.6.x"
+  }
+}
