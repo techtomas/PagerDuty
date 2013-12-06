@@ -1,6 +1,6 @@
 var Mongoose = require('mongoose');
 
-exports.IncidentSchema = new Mongoose.Schema({
+exports.Incident = new Mongoose.Schema({
   id: String,
   incident_number: Number,
   created_on: Date,

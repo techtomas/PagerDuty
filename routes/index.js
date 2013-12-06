@@ -3,5 +3,12 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  // console.log(req.db.Incident);
+  req.db.Incident.find({}, function(err, incident){
+    res.render('index', { 
+      title: 'Express',
+      incident: incident
+    }); 
+  });
+  
 };

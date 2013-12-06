@@ -4,8 +4,8 @@ var Mongoose = require('mongoose');
 var config = require('./config');
 require('./util'); //Add some helper functions for the DB Connection
 
-var IncidentSchema = require('./models/Incident').IncidentSchema
-var Incident = Mongoose.model("Incident", IncidentSchema);
+var models = require('./models');
+var Incident = Mongoose.model("Incident", models.Incident);
 Mongoose.connect('mongodb://' + config.mongodb.host + '/' + config.mongodb.db, function (err) {
   if (err) throw err;
 });
