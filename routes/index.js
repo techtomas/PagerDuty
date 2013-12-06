@@ -1,13 +1,27 @@
+var builder = require('xmlbuilder');
+
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
   // console.log(req.db.Incident);
-  req.db.Incident.find({}, function(err, incident){
+  req.db.Incident.find({}, function processRecords(err, incident){
+    var xml = builder.create('root', {version: '1.0', encoding: 'utf-8'});
+    
+    for (var i = 0; i < incident.length; i++) {
+      var node = xml.ele('incident', {'id': incident[i].id})
+        node.e('created', {}, incident[i].created_on);
+        node.e('incident_number', {}, incident[i].incident_number);
+        node.e('status', {}, incident[i].status);
+        node.e('trigger_type', {}, incident[i].trigger_type);
+        node.e('number_of_escelations', {}, incident[i].number_of_escelations);
+        node.e('html_url', {}, incident[i].html_url);
+    };
+
+    res.set('Content-Type', 'application/xml; charset=utf-8');
     res.render('index', { 
-      title: 'Express',
-      incident: incident
+      incident: xml.end({ pretty: true, indent: '  ', newline: '\n' })
     }); 
   });
   
