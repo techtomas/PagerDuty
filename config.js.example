@@ -9,6 +9,7 @@ config.pagerduty = {};
 config.mongodb = {};
 
 config.pagerduty.url = 'pagerduty.com';
+config.pagerduty.path = '/api/v1/incidents?sort_by=incident_number:asc';
 config.pagerduty.token = 'xxxxxxx';
 
 config.mongodb.host = 'localhost';

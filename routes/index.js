@@ -6,7 +6,11 @@ var builder = require('xmlbuilder');
 
 exports.index = function(req, res){
   // console.log(req.db.Incident);
-  req.db.Incident.find({}, function processRecords(err, incident){
+  req.db.Incident.find({}, null, {
+    sort: {
+      'incident_number': 1
+    }
+  }, function processRecords(err, incident){
     var xml = builder.create('root', {version: '1.0', encoding: 'utf-8'});
     
     for (var i = 0; i < incident.length; i++) {
@@ -26,3 +30,12 @@ exports.index = function(req, res){
   });
   
 };
+
+exports.records = function(req, res) {
+  req.db.Incident.count({}, function(err, count){
+    if (err) console.log(err);
+    res.render('records', {
+      count: count
+    });
+  });
+}

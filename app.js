@@ -59,6 +59,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', db, lib.load, routes.index);
+app.get('/seed', db, lib.seed, lib.load, routes.index); //seed the database by pulling all records
+app.get('/records', db, routes.records);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
