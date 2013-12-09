@@ -8,6 +8,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var lib = require('./lib');
 
 var app = express();
 
@@ -33,6 +34,7 @@ process.on('SIGINT', function() {
 
 //DB Middleware to setup our connection and attach to the request
 function db (req, res, next) {
+  req.config = config;
   req.db = {
     Incident: connection.model("Incident", models.Incident)
   };
@@ -56,7 +58,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', db, routes.index);
+app.get('/', db, lib.load, routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
