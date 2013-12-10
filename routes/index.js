@@ -40,3 +40,9 @@ exports.records = function(req, res) {
     });
   });
 }
+
+exports.load = function(req, res) {
+  res.render('load', {
+    message: "Load script ran"
+  });
+}

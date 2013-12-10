@@ -58,7 +58,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', db, lib.load, routes.index);
+app.get('/', db, routes.index);
+app.get('/load', db, lib.load, routes.load);
 app.get('/seed', db, lib.seed, lib.load, routes.index); //seed the database by pulling all records
 app.get('/records', db, routes.records);
 
