@@ -11,6 +11,7 @@
     "mongoose" : "3.6.x",
     "express": "3.4.6",
     "ejs": "*",
-    "xmlbuilder": "*"
+    "xmlbuilder": "*",
+    "moment": "*"
   }
 }

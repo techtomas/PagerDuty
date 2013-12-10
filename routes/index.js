@@ -1,4 +1,5 @@
 var builder = require('xmlbuilder');
+var moment = require('moment');
 
 /*
  * GET home page.
@@ -15,7 +16,7 @@ exports.index = function(req, res){
     
     for (var i = 0; i < incident.length; i++) {
       var node = xml.ele('incident', {'id': incident[i].id})
-        node.e('created', {}, incident[i].created_on);
+        node.e('created', {}, moment(incident[i].created_on).format('YYYY-MM-DD HH:mm:ss'));
         node.e('incident_number', {}, incident[i].incident_number);
         node.e('status', {}, incident[i].status);
         node.e('trigger_type', {}, incident[i].trigger_type);
